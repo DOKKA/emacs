@@ -12,7 +12,7 @@
  starter-kit starter-kit-lisp starter-kit-bindings starter-kit-eshell
 
  ;; clojure development stuff
- clojure-mode clojurescript-mode nrepl
+ clojure-mode clojurescript-mode cider
  
  ;; my favorite theme
  zenburn-theme 
