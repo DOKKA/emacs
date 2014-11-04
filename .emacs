@@ -1,34 +1,21 @@
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-             '("SC" . "http://joseito.republika.pl/sunrise-commander/"))
+
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
 (defvar my-packages 
  '(
- ;; add some better defaults and little niceities
- starter-kit starter-kit-lisp starter-kit-bindings starter-kit-eshell
+  ;; add some better defaults and little niceities
+  starter-kit starter-kit-lisp starter-kit-bindings starter-kit-eshell
 
- ;; clojure development stuff
- clojure-mode clojurescript-mode cider
- 
- ;; my favorite theme
- zenburn-theme 
- 
- ;; window number instead of hitting ctrl-x-o all the time
- window-number
- 
- ;; run powershell as an inferior shell in emacs
- ;; powershell
+  ;; window number instead of hitting ctrl-x-o all the time
+  window-number
 
- ;;sunrise commander for navigating folders
- sunrise-commander
+  flymake-cursor  flymake-ruby
 
- ;;treeview for sunrise commander
- sunrise-x-tree
- 
+  js2-mode 
  ))
  
 (dolist (p my-packages)
@@ -55,6 +42,11 @@
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
 (require 'flymake-cursor)
+
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js-mode-hook 'esk-paredit-nonlisp)
+
+
 
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
@@ -86,14 +78,4 @@
 
 
 
-(load-file "/home/kevin/.emacs.d/elpa/sr-speedbar-0.1.8/sr-speedbar.el")
 
-
-
-(custom-set-variables
- '(speedbar-show-unknown-files t)
- '(sr-speedbar-right-side nil)
- )
-
-(global-unset-key (kbd "M-o"))
-(global-set-key (kbd "M-o") 'sr-speedbar-open)
